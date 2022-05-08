@@ -18,5 +18,7 @@
     <string name="_plus">+</string>
     <string name="_info_field">Информационное поле</string>
     <string name="_enter_field">Поле ввода</string>
+    <string name="info">info</string>
+    <string name="result">Результат</string>
 
 </resources>
