@@ -1,7 +1,6 @@
 package com.vados.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,20 +9,20 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView textView_result;
     private TextView textView_info;
-    private Button buttons[] = new Button[15];
+    private Button buttons[] = new Button[11]; // храним кнопки 0-9 и .
+    private Button signs[] = new Button[4]; // храним массив с мат. действиями
     private String result = "";
     private Button button_result;
+    boolean exit = false;
+    CalcActions calcActions01;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initialization();
-        clickListener();
-
-
-        //textView_info.setText("Привет");
+            initialization();
+            clickListener();
 
     }
 
@@ -39,14 +38,17 @@ public class MainActivity extends AppCompatActivity {
         buttons[8] = findViewById(R.id.button8);
         buttons[9] = findViewById(R.id.button9);
         buttons[10] = findViewById(R.id.button_point);
-        buttons[11] = findViewById(R.id.button_plus);
-        buttons[12] = findViewById(R.id.button_minus);
-        buttons[13] = findViewById(R.id.button_mult);
-        buttons[14] = findViewById(R.id.button_dif);
+
+        signs[0] = findViewById(R.id.button_plus);
+        signs[1] = findViewById(R.id.button_minus);
+        signs[2] = findViewById(R.id.button_mult);
+        signs[3] = findViewById(R.id.button_dif);
         button_result = findViewById(R.id.button_result);
 
         textView_info = findViewById(R.id.textView_info);
         textView_info = findViewById(R.id.textView_result);
+
+        calcActions01 = new CalcActions();
 
     }
 
@@ -59,13 +61,49 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        button_result.setOnClickListener(v -> {
-            String[] nums = result.split("\\+|\\-|\\*|\\/");
+        //Операция сложения
+        signs[0].setOnClickListener(v -> {
+            calcActions01.setMathSigns("+");
+            result += signs[0].getText();
+            printEnters();
+        });
+        //Операция вычитания
+        signs[1].setOnClickListener(v -> {
+            calcActions01.setMathSigns("-");
+            result += signs[1].getText();
+            printEnters();
+        });
+        //Операция умножения
+        signs[2].setOnClickListener(v -> {
+            calcActions01.setMathSigns("*");
+            result += signs[2].getText();
+            printEnters();
+        });
+        //Операция деления
+        signs[3].setOnClickListener(v -> {
+            calcActions01.setMathSigns("/");
+            result += signs[3].getText();
+            printEnters();
+        });
 
+        //Выводим результат
+        button_result.setOnClickListener(v -> {
+            // разделяем текст на элементы для мат операций
+            String[] stringNums = result.split("\\+|\\-|\\*|\\/");
+
+            //переводим string во float
+            float[] floatNums = new float[stringNums.length];
+            for (int i = 0;i < stringNums.length;i++) {
+                calcActions01.setNums(Float.parseFloat(stringNums[i]));
+                //floatNums[i] = Float.parseFloat(stringNums[i]);
+            }
+            result = String.valueOf(calcActions01.getResult());
+            printEnters();
         });
     }
 
     private void printEnters(){
         textView_info.setText(result);
     }
+
 }
