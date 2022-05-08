@@ -9,10 +9,11 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView textView_result;
     private TextView textView_info;
+    private String result = "";
     private Button buttons[] = new Button[11]; // храним кнопки 0-9 и .
     private Button signs[] = new Button[4]; // храним массив с мат. действиями
-    private String result = "";
     private Button button_result;
+    private Button button_reset;
     boolean exit = false;
     CalcActions calcActions01;
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Инициализация объектов
     private void initialization(){
         buttons[0] = findViewById(R.id.button0);
         buttons[1] = findViewById(R.id.button1);
@@ -44,16 +46,19 @@ public class MainActivity extends AppCompatActivity {
         signs[2] = findViewById(R.id.button_mult);
         signs[3] = findViewById(R.id.button_dif);
         button_result = findViewById(R.id.button_result);
+        button_reset = findViewById(R.id.button_reset);
 
         textView_info = findViewById(R.id.textView_info);
-        textView_info = findViewById(R.id.textView_result);
+        textView_result = findViewById(R.id.textView_result);
 
         calcActions01 = new CalcActions();
 
     }
 
+    //Основная функция для действий по нажатию кнопок
     public void clickListener(){
-        //запускаем подслушку на основные кнопки
+
+        //Запускаем подслушку на основные кнопки 0-9 и .
         for (Button e:buttons) {
             e.setOnClickListener(v -> {
                 result += e.getText();
@@ -86,24 +91,90 @@ public class MainActivity extends AppCompatActivity {
             printEnters();
         });
 
+        //Стираем данные
+        button_reset.setOnClickListener(v -> {
+            calcActions01.remove();
+            result = "";
+            printEnters();
+        });
+
+
         //Выводим результат
         button_result.setOnClickListener(v -> {
             // разделяем текст на элементы для мат операций
             String[] stringNums = result.split("\\+|\\-|\\*|\\/");
 
-            //переводим string во float
-            float[] floatNums = new float[stringNums.length];
-            for (int i = 0;i < stringNums.length;i++) {
-                calcActions01.setNums(Float.parseFloat(stringNums[i]));
-                //floatNums[i] = Float.parseFloat(stringNums[i]);
+            int k = 0; // начало отсчёта
+
+            //Если нечайно ввели спереди символ, то обрезаем его
+            if (result.indexOf("-") == 0 || result.indexOf("+") == 0||
+                    result.indexOf("*") == 0 || result.indexOf("/") == 0){
+                k = 1;
             }
-            result = String.valueOf(calcActions01.getResult());
-            printEnters();
+
+            //переводим string во float
+            for (int i = k; i < stringNums.length;i++) {
+                calcActions01.setNums(Float.parseFloat(stringNums[i]));
+            }
+
+            //выводим результат
+            if (!printLastError()){
+                result = String.valueOf(calcActions01.getResult(result));
+                printEnters();
+            }
+            else{
+                result = "";
+                printEnters();
+            }
+
+            calcActions01.remove();
         });
     }
 
+    //Функция для вывода результата на ТекстВью
     private void printEnters(){
-        textView_info.setText(result);
+        textView_result.setText(result);
     }
 
+    //Функция обработки ошибок
+    /**
+     *  обрабатывает result на типичные ошибки, и не даёт завалиться программе
+     *  1 - действий больше, чем чисел
+     *  2 - деление на 0
+     */
+    private boolean printLastError(){
+        boolean error = false;
+        // проверяем на то 1 элемнт математичесий знак или нет, минус не берём в расчёт.
+        if (result.indexOf("+") == 0|| result.indexOf("*") == 0 || result.indexOf("/") == 0){
+            textView_info.setText("Вы ввели символ перед первой цифрой");
+            //calcActions01.removeFirstSign();
+            clearAll();
+            error = true;
+        }
+
+        if (result.indexOf("-") == 0){
+            if (calcActions01.getSignsSize() != calcActions01.getNumsSize()){
+                textView_info.setText("Не корректный ввод");
+                clearAll();
+                error = true;
+            }
+        }
+        else{
+            if (calcActions01.getSignsSize()+1 != calcActions01.getNumsSize()){
+                textView_info.setText("Не корректный ввод");
+                clearAll();
+                error = true;
+            }
+        }
+
+        if (!error) textView_info.setText("");
+        return error;
+    }
+
+    //при ошибке очищает массивы и сбрасывает результат
+    void clearAll(){
+        result = "";
+        calcActions01.remove();
+        printEnters();
+    }
 }
