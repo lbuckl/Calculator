@@ -101,21 +101,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Выводим результат
         button_result.setOnClickListener(v -> {
-            // разделяем текст на элементы для мат операций
-            String[] stringNums = result.split("\\+|\\-|\\*|\\/");
-
-            int k = 0; // начало отсчёта
-
-            //Если нечайно ввели спереди символ, то обрезаем его
-            if (result.indexOf("-") == 0 || result.indexOf("+") == 0||
-                    result.indexOf("*") == 0 || result.indexOf("/") == 0){
-                k = 1;
-            }
-
-            //переводим string во float
-            for (int i = k; i < stringNums.length;i++) {
-                calcActions01.setNums(Float.parseFloat(stringNums[i]));
-            }
 
             //выводим результат
             if (!printLastError()){

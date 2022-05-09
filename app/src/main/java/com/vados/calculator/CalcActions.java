@@ -37,12 +37,34 @@ public class CalcActions {
     public float getResult(@NonNull String res){
         String errorMessage = "";
 
+
+        //__________________________________________
+        String[] stringNums = res.split("\\+|\\-|\\*|\\/");
+
+        int k = 0; // начало отсчёта
+
+        //Если нечайно ввели спереди символ, то обрезаем его
+        if (res.indexOf("-") == 0 || res.indexOf("+") == 0||
+                res.indexOf("*") == 0 || res.indexOf("/") == 0){
+            k = 1;
+        }
+
+        //переводим string во float
+        for (int i = k; i < stringNums.length;i++) {
+            Float.parseFloat(stringNums[i]);
+        }
+        //__________________________________________
+
+
+        ///_________________________________________
         if (res.indexOf('-') == 0){
             bufResult = nums.get(0)*(-1);
             mathSigns.remove(0);
         }
         else bufResult = nums.get(0);
+        //__________________________________________
 
+        //На вход должны подаваться корректные массивы (mathSigns < nums на 1)
         try{
             for (int i = 0;i < mathSigns.size();i++){
                 if(mathSigns.get(i).equals("+")){
