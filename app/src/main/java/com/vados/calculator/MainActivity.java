@@ -127,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
                 printEnters();
             }
 
-            calcActions01.remove();
         });
     }
 
@@ -147,25 +146,9 @@ public class MainActivity extends AppCompatActivity {
         // проверяем на то 1 элемнт математичесий знак или нет, минус не берём в расчёт.
         if (result.indexOf("+") == 0|| result.indexOf("*") == 0 || result.indexOf("/") == 0){
             textView_info.setText("Вы ввели символ перед первой цифрой");
-            //calcActions01.removeFirstSign();
-            clearAll();
-            error = true;
+            calcActions01.removeFirstSign();
         }
 
-        if (result.indexOf("-") == 0){
-            if (calcActions01.getSignsSize() != calcActions01.getNumsSize()){
-                textView_info.setText("Не корректный ввод");
-                clearAll();
-                error = true;
-            }
-        }
-        else{
-            if (calcActions01.getSignsSize()+1 != calcActions01.getNumsSize()){
-                textView_info.setText("Не корректный ввод");
-                clearAll();
-                error = true;
-            }
-        }
 
         if (!error) textView_info.setText("");
         return error;
