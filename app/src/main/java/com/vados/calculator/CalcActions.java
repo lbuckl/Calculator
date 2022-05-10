@@ -16,18 +16,6 @@ public class CalcActions {
         this.mathSigns.add(sign);
     }
 
-    public void setNums(float num) {
-        this.nums.add(num);
-    }
-
-    public int getSignsSize(){
-        return mathSigns.size();
-    }
-
-    public int getNumsSize(){
-        return nums.size();
-    }
-
     //Очищаем данные от введённых чисел и знаков
     public void remove(){
         mathSigns.clear();
@@ -94,10 +82,6 @@ public class CalcActions {
         }
 
         return bufResult;
-    }
-
-    void removeFirstSign(){
-        mathSigns.remove(0);
     }
 
 }

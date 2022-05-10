@@ -9,14 +9,13 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView textView_result;
     private TextView textView_info;
+    private TextView textView_lastValue;
     private String result = "";
-    private Button buttons[] = new Button[11]; // храним кнопки 0-9 и .
-    private Button signs[] = new Button[4]; // храним массив с мат. действиями
+    private final Button[] buttons = new Button[11]; // храним кнопки 0-9 и .
+    private final Button[] signs = new Button[4]; // храним массив с мат. действиями
     private Button button_result;
     private Button button_reset;
-    boolean exit = false;
     CalcActions calcActions01;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
             initialization();
             clickListener();
-
     }
 
     //Инициализация объектов
@@ -50,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         textView_info = findViewById(R.id.textView_info);
         textView_result = findViewById(R.id.textView_result);
+        textView_lastValue = findViewById(R.id.textView_lastValue);
 
         calcActions01 = new CalcActions();
 
@@ -96,11 +95,14 @@ public class MainActivity extends AppCompatActivity {
             calcActions01.remove();
             result = "";
             printEnters();
+            textView_info.setText("");
         });
 
 
         //Выводим результат
         button_result.setOnClickListener(v -> {
+            findError(result);
+            textView_lastValue.setText(result);
             float fResult = calcActions01.getResult(result);
             result = String.valueOf(fResult);
             calcActions01.remove();
@@ -115,6 +117,26 @@ public class MainActivity extends AppCompatActivity {
         textView_result.setText(result);
     }
 
+
+    //функция поиска ошибок
+    private boolean findError(String str){
+        boolean res = false;
+
+        //Ищем деление на ноль
+        if (str.contains("/0")){
+            textView_info.setText("Возможно деление на 0");
+            return true;
+        }
+
+        if (str.indexOf("-") == 0 || str.indexOf("+") == 0||
+                str.indexOf("*") == 0 || str.indexOf("/") == 0){
+            textView_info.setText("Первый символ игнор.");
+            return true;
+        }
+
+        if (!res) textView_info.setText("");
+        return res;
+    }
 
     //при ошибке очищает массивы и сбрасывает результат
     void clearAll(){
