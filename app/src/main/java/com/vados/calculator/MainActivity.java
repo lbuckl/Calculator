@@ -101,17 +101,12 @@ public class MainActivity extends AppCompatActivity {
 
         //Выводим результат
         button_result.setOnClickListener(v -> {
+            float fResult = calcActions01.getResult(result);
+            result = String.valueOf(fResult);
+            calcActions01.remove();
 
-            //выводим результат
-            if (!printLastError()){
-                result = String.valueOf(calcActions01.getResult(result));
-                printEnters();
-            }
-            else{
-                result = "";
-                printEnters();
-            }
-
+            if (fResult < 0) calcActions01.setMathSigns("-");
+            printEnters();
         });
     }
 
@@ -120,24 +115,6 @@ public class MainActivity extends AppCompatActivity {
         textView_result.setText(result);
     }
 
-    //Функция обработки ошибок
-    /**
-     *  обрабатывает result на типичные ошибки, и не даёт завалиться программе
-     *  1 - действий больше, чем чисел
-     *  2 - деление на 0
-     */
-    private boolean printLastError(){
-        boolean error = false;
-        // проверяем на то 1 элемнт математичесий знак или нет, минус не берём в расчёт.
-        if (result.indexOf("+") == 0|| result.indexOf("*") == 0 || result.indexOf("/") == 0){
-            textView_info.setText("Вы ввели символ перед первой цифрой");
-            calcActions01.removeFirstSign();
-        }
-
-
-        if (!error) textView_info.setText("");
-        return error;
-    }
 
     //при ошибке очищает массивы и сбрасывает результат
     void clearAll(){

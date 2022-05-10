@@ -38,7 +38,6 @@ public class CalcActions {
         String errorMessage = "";
 
 
-        //__________________________________________
         String[] stringNums = res.split("\\+|\\-|\\*|\\/");
 
         int k = 0; // начало отсчёта
@@ -49,20 +48,18 @@ public class CalcActions {
             k = 1;
         }
 
-        //переводим string во float
+        //переводим string во float и добавляем в
         for (int i = k; i < stringNums.length;i++) {
-            Float.parseFloat(stringNums[i]);
+            nums.add(Float.parseFloat(stringNums[i]));
         }
         //__________________________________________
 
-
-        ///_________________________________________
+        //Если первый символ "минус", то преобразуем число
         if (res.indexOf('-') == 0){
             bufResult = nums.get(0)*(-1);
             mathSigns.remove(0);
         }
         else bufResult = nums.get(0);
-        //__________________________________________
 
         //На вход должны подаваться корректные массивы (mathSigns < nums на 1)
         try{
