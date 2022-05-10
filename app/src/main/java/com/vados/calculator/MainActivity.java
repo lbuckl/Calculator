@@ -1,21 +1,52 @@
 package com.vados.calculator;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView textView_result;
     private TextView textView_info;
     private TextView textView_lastValue;
     private String result = "";
+    private String lastVal = "";
     private final Button[] buttons = new Button[11]; // храним кнопки 0-9 и .
     private final Button[] signs = new Button[4]; // храним массив с мат. действиями
     private Button button_result;
     private Button button_reset;
     CalcActions calcActions01;
+
+    //Сохраняем данные перед пересозданием активити
+    protected void onSaveInstanceState(@NonNull Bundle instanceState) {
+        super.onSaveInstanceState(instanceState);
+        instanceState.putString("result", result); // сохраняем результат
+        instanceState.putString("enters", lastVal); //Сохраняем ввод
+        instanceState.putStringArrayList("sig",calcActions01.getMathSigns()); //Сохраняем массив с введёнными мат. знаками
+    }
+
+    //Возвращаем данные после пересоздания активити
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        //Возвращаем результат
+        result = savedInstanceState.getString("result");
+        textView_result.setText(result);
+
+        //Возвращаем предыдущий ввод
+        textView_lastValue.setText(savedInstanceState.getString("enters"));
+
+        //Возвращаем данные с введёнными мат. символами
+        //int count = savedInstanceState.getString("sig").length();
+        ArrayList<String> mathSigns = savedInstanceState.getStringArrayList("sig");
+        for (int i = 0; i < mathSigns.size();i++){
+            calcActions01.setMathSigns(mathSigns.get(i));
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +133,10 @@ public class MainActivity extends AppCompatActivity {
         //Выводим результат
         button_result.setOnClickListener(v -> {
             findError(result);
-            textView_lastValue.setText(result);
+            lastVal = result;
+            textView_lastValue.setText(lastVal);
+
+
             float fResult = calcActions01.getResult(result);
             result = String.valueOf(fResult);
             calcActions01.remove();
@@ -143,5 +177,15 @@ public class MainActivity extends AppCompatActivity {
         result = "";
         calcActions01.remove();
         printEnters();
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }
