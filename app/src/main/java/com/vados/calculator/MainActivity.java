@@ -3,14 +3,14 @@ package com.vados.calculator;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity  {
 
+    //region глобальные данные
     private TextView textView_result;
     private TextView textView_info;
     private TextView textView_lastValue;
@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button button_result;
     private Button button_reset;
     CalcActions calcActions01;
+    //endregion
 
     //Сохраняем данные перед пересозданием активити
     protected void onSaveInstanceState(@NonNull Bundle instanceState) {
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             });
         }
 
+        //region математические операции и кнопка res
         //Операция сложения
         signs[0].setOnClickListener(v -> {
             calcActions01.setMathSigns("+");
@@ -128,14 +130,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             printEnters();
             textView_info.setText("");
         });
-
+        //endregion
 
         //Выводим результат
         button_result.setOnClickListener(v -> {
             findError(result);
             lastVal = result;
             textView_lastValue.setText(lastVal);
-
 
             float fResult = calcActions01.getResult(result);
             result = String.valueOf(fResult);
@@ -150,7 +151,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void printEnters(){
         textView_result.setText(result);
     }
-
 
     //функция поиска ошибок
     private boolean findError(String str){
@@ -170,22 +170,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (!res) textView_info.setText("");
         return res;
-    }
-
-    //при ошибке очищает массивы и сбрасывает результат
-    void clearAll(){
-        result = "";
-        calcActions01.remove();
-        printEnters();
-    }
-
-    @Override
-    public void onClick(View v) {
-
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
     }
 }
