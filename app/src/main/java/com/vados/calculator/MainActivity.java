@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textView_result.setText(result);
 
         //Возвращаем предыдущий ввод
-        textView_lastValue.setText(savedInstanceState.getString("enters"));
+        lastVal = savedInstanceState.getString("enters");
+        textView_lastValue.setText(lastVal);
 
         //Возвращаем данные с введёнными мат. символами
-        //int count = savedInstanceState.getString("sig").length();
         ArrayList<String> mathSigns = savedInstanceState.getStringArrayList("sig");
         for (int i = 0; i < mathSigns.size();i++){
             calcActions01.setMathSigns(mathSigns.get(i));
