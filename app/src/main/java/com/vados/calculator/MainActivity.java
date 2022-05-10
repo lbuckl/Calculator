@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity  {
         instanceState.putString("result", result); // сохраняем результат
         instanceState.putString("enters", lastVal); //Сохраняем ввод
         instanceState.putStringArrayList("sig",calcActions01.getMathSigns()); //Сохраняем массив с введёнными мат. знаками
+        instanceState.putString("info", (String) textView_info.getText()); // сохраняем результат
     }
 
     //Возвращаем данные после пересоздания активити
@@ -47,6 +48,9 @@ public class MainActivity extends AppCompatActivity  {
         for (int i = 0; i < mathSigns.size();i++){
             calcActions01.setMathSigns(mathSigns.get(i));
         }
+
+        //Возвращаем инфо
+        textView_info.setText(savedInstanceState.getString("info"));
     }
 
     @Override
