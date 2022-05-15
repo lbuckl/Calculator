@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/general_background">
 
     <TextView
         android:id="@+id/textView_lastValue"
-        style="@style/MyTextStyleBIG"
+        style="@style/MyTextStyleLastval"
         android:layout_width="@dimen/lastVal_width"
         android:layout_height="@dimen/lastVal_height"
         android:gravity="end"
@@ -33,7 +34,6 @@
         android:layout_height="@dimen/result_height"
         android:layout_marginTop="8dp"
         android:background="@color/general_background"
-        android:clickable="false"
         android:gravity="right|center_vertical"
         android:hint="@string/result"
         android:textSize="@dimen/result_textSize"
@@ -43,6 +43,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_plus"
+        style="MyTextStyleLightButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
