@@ -8,4 +8,5 @@
     <dimen name="lastVal_width">365dp</dimen>
     <dimen name="lastVal_height">20dp</dimen>
     <dimen name="result_textSize">24sp</dimen>
+    <dimen name="lastVal_textSize">16sp</dimen>
 </resources>
