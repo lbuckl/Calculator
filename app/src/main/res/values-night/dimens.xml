@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_text_size">20sp</dimen>
+    <dimen name="result_width">364dp</dimen>
+    <dimen name="result_height">43dp</dimen>
+    <dimen name="info_width">180dp</dimen>
+    <dimen name="info_height">38dp</dimen>
+    <dimen name="lastVal_width">365dp</dimen>
+    <dimen name="lastVal_height">20dp</dimen>
+    <dimen name="result_textSize">24sp</dimen>
+</resources>

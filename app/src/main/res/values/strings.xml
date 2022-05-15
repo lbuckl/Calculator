@@ -20,5 +20,6 @@
     <string name="_enter_field">Поле ввода</string>
     <string name="info">info</string>
     <string name="result">Результат</string>
+    <string name="res">res</string>
 
 </resources>
