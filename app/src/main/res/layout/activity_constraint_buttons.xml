@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:backgroundTint="@color/general_background">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textView_lastValue"
@@ -18,10 +17,10 @@
 
     <TextView
         android:id="@+id/textView_info"
+        style="@style/MyTextStyleTextViev"
         android:layout_width="@dimen/info_width"
         android:layout_height="@dimen/info_height"
-        android:layout_marginTop="8dp"
-        android:background="@color/general_background"
+        android:layout_marginTop="4dp"
         android:gravity="center_vertical"
         android:hint="@string/info"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -30,10 +29,10 @@
 
     <TextView
         android:id="@+id/textView_result"
+        style="@style/MyTextStyleTextViev"
         android:layout_width="@dimen/result_width"
         android:layout_height="@dimen/result_height"
         android:layout_marginTop="8dp"
-        android:background="@color/general_background"
         android:gravity="right|center_vertical"
         android:hint="@string/result"
         android:textSize="@dimen/result_textSize"
@@ -43,12 +42,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_plus"
-        style="MyTextStyleLightButtons"
+        style="@style/MyTextStyleButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/_plus"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/button9"
@@ -59,11 +57,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_minus"
+        style="@style/MyTextStyleButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/_minus"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/button6"
@@ -74,11 +72,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_mult"
+        style="@style/MyTextStyleButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/_mult"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/button3"
@@ -89,11 +87,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_dif"
+        style="@style/MyTextStyleButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="7dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/_dif"
         android:textColorHint="#FFFFFF"
         android:textSize="@dimen/button_text_size"
@@ -107,10 +105,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button1"
+        style="@style/MyTextStyleNums"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/_1"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
@@ -119,10 +117,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button2"
+        style="@style/MyTextStyleNums"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/_2"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/button1"
@@ -132,10 +130,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button3"
+        style="@style/MyTextStyleNums"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/_3"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/button2"
@@ -145,10 +143,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button4"
+        style="@style/MyTextStyleNums"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/_4"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintEnd_toEndOf="@+id/button1"
@@ -158,10 +156,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button5"
+        style="@style/MyTextStyleNums"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/_5"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/button4"
@@ -171,10 +169,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button6"
+        style="@style/MyTextStyleNums"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/_6"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/button5"
@@ -184,10 +182,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button7"
+        style="@style/MyTextStyleNums"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/_7"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintEnd_toEndOf="@+id/button4"
@@ -197,10 +195,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button8"
+        style="@style/MyTextStyleNums"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/_8"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/button7"
@@ -210,10 +208,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button9"
+        style="@style/MyTextStyleNums"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/_9"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/button8"
@@ -223,10 +221,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button0"
+        style="@style/MyTextStyleNums"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/_0"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/button_point"
@@ -236,10 +234,10 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_point"
+        style="@style/MyTextStyleButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/_point"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintEnd_toEndOf="@+id/button7"
@@ -249,11 +247,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_result"
+        style="@style/MyTextStyleButtons"
         android:layout_width="181dp"
         android:layout_height="48dp"
         android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/_ecual"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/button0"
@@ -264,16 +262,16 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_reset"
+        style="@style/MyTextStyleButtons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:backgroundTint="@color/general_background"
         android:text="@string/res"
         android:textSize="@dimen/button_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/textView_info"
         app:layout_constraintStart_toEndOf="@+id/textView_info"
         app:layout_constraintTop_toTopOf="@+id/textView_info"
-        tools:ignore="TextContrastCheck" />
+        tools:ignore="TextContrastCheck"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
