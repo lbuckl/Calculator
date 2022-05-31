@@ -22,11 +22,20 @@
     <string name="result">Результат</string>
     <string name="res">res</string>
 
+    <!--Стринги для панели настроек-->
     <string name="AppName">Приложение</string>
     <string name="AppVersion">Версия</string>
     <string name="AppStyle">Стиль</string>
     <string name="AppLeng">Язык</string>
     <string name="NoName">No</string>
+    <string-array name="Langs">
+        <item>Английский</item>
+        <item>Русский</item>
+    </string-array>
 
+    <string-array name="Styles">
+        <item>Светлый</item>
+        <item>Тёмный</item>
+    </string-array>
 
 </resources>

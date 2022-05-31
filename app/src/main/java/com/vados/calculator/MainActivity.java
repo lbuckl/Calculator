@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity implements Constants{
 
     //region глобальные данные
     private TextView textView_result;
@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity  {
     private TextView textView_lastValue;
     private String result = "";
     private String lastVal = "";
-    private final Button[] buttons = new Button[11]; // храним кнопки 0-9 и .
-    private final Button[] signs = new Button[4]; // храним массив с мат. действиями
+    //private final Button[] buttons = new Button[11]; // храним кнопки 0-9 и .
+    //private final Button[] signs = new Button[4]; // храним массив с мат. действиями
     private Button button_result;
     private Button button_reset;
     private Button button_settings;

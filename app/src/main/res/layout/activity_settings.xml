@@ -6,4 +6,95 @@
     android:layout_height="match_parent"
     tools:context=".Settings">
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView_AppNameDescr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:text="@string/AppName" />
+
+            <TextView
+                android:id="@+id/textView_AppName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView_AppVersionDescr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/AppVersion" />
+
+            <TextView
+                android:id="@+id/textView_AppVersion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView_StyleDescr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/AppStyle" />
+
+            <TextView
+                android:id="@+id/textView_Style"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="TextView" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+                android:entries="@array/Styles"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView_LangDescr"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/AppLeng" />
+
+            <TextView
+                android:id="@+id/textView_Lang"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="TextView" />
+
+            <Spinner
+                android:id="@+id/spinner_Lang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+                android:entries="@array/Langs"/>
+
+        </TableRow>
+
+    </TableLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
