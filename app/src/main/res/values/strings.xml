@@ -22,4 +22,11 @@
     <string name="result">Результат</string>
     <string name="res">res</string>
 
+    <string name="AppName">Приложение</string>
+    <string name="AppVersion">Версия</string>
+    <string name="AppStyle">Стиль</string>
+    <string name="AppLeng">Язык</string>
+    <string name="NoName">No</string>
+
+
 </resources>

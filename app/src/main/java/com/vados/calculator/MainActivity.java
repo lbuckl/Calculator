@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity  {
     private final Button[] signs = new Button[4]; // храним массив с мат. действиями
     private Button button_result;
     private Button button_reset;
-    CalcActions calcActions01;
+    private CalcActions calcActions01;
     //endregion
 
     //Сохраняем данные перед пересозданием активити

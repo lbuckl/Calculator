@@ -9,5 +9,6 @@
     <dimen name="info_height">38dp</dimen>
     <dimen name="lastVal_width">365dp</dimen>
     <dimen name="lastVal_height">20dp</dimen>
+    <dimen name="mainIncludeWidth">412dp</dimen>
 
 </resources>
