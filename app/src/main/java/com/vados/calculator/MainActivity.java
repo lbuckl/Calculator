@@ -2,6 +2,8 @@ package com.vados.calculator;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.Button;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity  {
     private final Button[] signs = new Button[4]; // храним массив с мат. действиями
     private Button button_result;
     private Button button_reset;
+    private Button button_settings;
     private CalcActions calcActions01;
     //endregion
 
@@ -82,6 +85,7 @@ public class MainActivity extends AppCompatActivity  {
         signs[3] = findViewById(R.id.button_dif);
         button_result = findViewById(R.id.button_result);
         button_reset = findViewById(R.id.button_reset);
+        button_settings = findViewById(R.id.button_settings);
 
         textView_info = findViewById(R.id.textView_info);
         textView_result = findViewById(R.id.textView_result);
@@ -149,6 +153,12 @@ public class MainActivity extends AppCompatActivity  {
 
             if (fResult < 0) calcActions01.setMathSigns("-");
             printEnters();
+        });
+
+        //Кнопка настроек
+        button_settings.setOnClickListener(v -> {
+            Intent button_settings = new Intent(MainActivity.this,Settings.class);
+            startActivity(button_settings);
         });
     }
 
