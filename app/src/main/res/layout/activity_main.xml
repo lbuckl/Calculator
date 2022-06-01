@@ -10,9 +10,10 @@
         android:id="@+id/button_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:icon="@drawable/Settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:icon="@drawable/ic_launcher_foreground"/>
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"

@@ -7,8 +7,10 @@
     tools:context=".Settings">
 
     <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
@@ -29,25 +31,25 @@
         </TableRow>
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_width="405dp"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView_AppVersionDescr"
-                android:layout_width="match_parent"
+                android:layout_width="108dp"
                 android:layout_height="match_parent"
                 android:text="@string/AppVersion" />
 
             <TextView
                 android:id="@+id/textView_AppVersion"
-                android:layout_width="match_parent"
+                android:layout_width="115dp"
                 android:layout_height="match_parent"
                 android:text="TextView" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView_StyleDescr"
@@ -62,17 +64,17 @@
                 android:text="TextView" />
 
             <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                android:entries="@array/Styles"/>
+                android:id="@+id/spinner_Style"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/Styles"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView_LangDescr"
@@ -89,9 +91,9 @@
             <Spinner
                 android:id="@+id/spinner_Lang"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
-                android:entries="@array/Langs"/>
+                android:layout_height="match_parent"
+                android:entries="@array/Langs"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </TableRow>
 
