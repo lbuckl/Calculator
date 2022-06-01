@@ -19,8 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/notebook1" />
-
+            app:srcCompat="@drawable/lightthem1" />
 
     </RelativeLayout>
 
@@ -29,7 +28,7 @@
         layout="@layout/activity_constraint_buttons"
         android:layout_width="411dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
