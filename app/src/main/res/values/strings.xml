@@ -38,4 +38,9 @@
         <item>Тёмный</item>
     </string-array>
 
+    <!--Перечисление тем-->
+    <string name="Light">Light</string>
+    <string name="Dark">Dark</string>
+
+
 </resources>

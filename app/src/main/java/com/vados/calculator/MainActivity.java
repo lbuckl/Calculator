@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.Button;
@@ -58,9 +59,23 @@ public class MainActivity extends AppCompatActivity implements Constants{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(codeStyleToStyleId(1));
         setContentView(R.layout.activity_main);
             initialization();
             clickListener();
+
+    }
+
+    //Возвращаем тему
+    private int codeStyleToStyleId(int codeStyle) {
+        switch (codeStyle) {
+            case 0:
+                return R.style.Theme_Calculator;
+            case 1:
+                return R.style.Theme_CalculatorDark;
+            default:
+                return R.style.Theme_Calculator;
+        }
     }
 
     //Инициализация объектов
