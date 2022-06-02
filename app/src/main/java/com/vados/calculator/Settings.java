@@ -1,11 +1,12 @@
 package com.vados.calculator;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -17,7 +18,11 @@ public class Settings extends AppCompatActivity implements Constants{
     private TextView textView_lang;
     private Spinner spinner_lang;
     private Spinner spinner_style;
-    int Style = 0;
+    private Button button_applySettings;
+    int style = 0;
+    String sStyle = "Light";
+    int lang = 0;
+    String sLang = "Ru";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,7 @@ public class Settings extends AppCompatActivity implements Constants{
         textView_lang = findViewById(R.id.textView_Lang);
         spinner_lang = findViewById(R.id.spinner_Lang);
         spinner_style = findViewById(R.id.spinner_Style);
+        button_applySettings = findViewById(R.id.button_applySettings);
 
         textView_appName.setText(appName);
         textView_appVersion.setText(appVersion);
@@ -42,18 +48,58 @@ public class Settings extends AppCompatActivity implements Constants{
 
     public void clickListener(){
 
+        //Спинер изменения Стиля
         spinner_style.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Style = spinner_style.getSelectedItemPosition();
-                textView_style.setText(String.valueOf(Style));
+                style = spinner_style.getSelectedItemPosition();
+                switch (style){
+                    case 0:
+                        sStyle = "Light";
+                        break;
+                    case 1:
+                        sStyle = "Dark";
+                        break;
+                }
+                textView_style.setText(sStyle);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Style = 0;
-                textView_style.setText(String.valueOf(Style));
+                style = 0;
+                textView_style.setText(String.valueOf(style));
             }
+        });
+
+        //Спинер изменения языка
+        spinner_lang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                lang = spinner_lang.getSelectedItemPosition();
+                switch (lang){
+                    case 0:
+                        sLang = "Ru";
+                        break;
+                    case 1:
+                        sLang = "En";
+                        break;
+                }
+                textView_lang.setText(sLang);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                lang = 0;
+                textView_lang.setText(sLang);
+            }
+        });
+
+        //Кнопка применить
+        button_applySettings.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.putExtra("styleName", textView_style.getText().toString());
+            setResult(RESULT_OK, intent);
+            finish();
         });
 
     }

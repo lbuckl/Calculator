@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
     private TextView textView_lastValue;
     private String result = "";
     private String lastVal = "";
+    private String styleName = "11111111";
     private Button button_result;
     private Button button_reset;
     private Button button_settings;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
         instanceState.putString("enters", lastVal); //Сохраняем ввод
         instanceState.putStringArrayList("sig",calcActions01.getMathSigns()); //Сохраняем массив с введёнными мат. знаками
         instanceState.putString("info", (String) textView_info.getText()); // сохраняем результат
+        instanceState.putString("styleName", (String) styleName); // сохраняем результат
     }
 
     //Возвращаем данные после пересоздания активити
@@ -54,29 +57,33 @@ public class MainActivity extends AppCompatActivity implements Constants{
 
         //Возвращаем инфо
         textView_info.setText(savedInstanceState.getString("info"));
+        //Возвращаем стиль
+        styleName = savedInstanceState.getString("styleName");
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(codeStyleToStyleId(1));
+        Toast.makeText(this, styleName, Toast.LENGTH_SHORT).show();
+        setTheme(codeStyleToStyleId(styleName));
         setContentView(R.layout.activity_main);
-            initialization();
-            clickListener();
-
+        initialization();
+        clickListener();
     }
 
     //Возвращаем тему
-    private int codeStyleToStyleId(int codeStyle) {
-        switch (codeStyle) {
-            case 0:
+    private int codeStyleToStyleId(String styleName) {
+        switch (styleName) {
+            case ("Light"):
                 return R.style.Theme_Calculator;
-            case 1:
+            case ("Dark"):
                 return R.style.Theme_CalculatorDark;
             default:
-                return R.style.Theme_Calculator;
+                return R.style.Theme_Calculator_Italian;
         }
     }
+
+    //Преобразуем
 
     //Инициализация объектов
     private void initialization(){
@@ -171,8 +178,18 @@ public class MainActivity extends AppCompatActivity implements Constants{
         //Кнопка настроек
         button_settings.setOnClickListener(v -> {
             Intent button_settings = new Intent(MainActivity.this,Settings.class);
-            startActivity(button_settings);
+            startActivityForResult(button_settings,1);
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data == null) {
+            return;
+        }
+        styleName = data.getStringExtra("styleName");
+        textView_info.setText(styleName);
     }
 
     //Функция для вывода результата на ТекстВью
