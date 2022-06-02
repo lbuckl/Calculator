@@ -97,7 +97,8 @@ public class Settings extends AppCompatActivity implements Constants{
         //Кнопка применить
         button_applySettings.setOnClickListener(v -> {
             Intent intent = new Intent();
-            intent.putExtra("styleName", textView_style.getText().toString());
+            //intent.putExtra("styleName", textView_style.getText().toString());
+            intent.putExtra("styleName", style);
             setResult(RESULT_OK, intent);
             finish();
         });

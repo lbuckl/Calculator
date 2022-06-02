@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Window;
@@ -22,10 +23,15 @@ public class MainActivity extends AppCompatActivity implements Constants{
     private String result = "";
     private String lastVal = "";
     private String styleName = "11111111";
+    private static final String appTheme = "APP_THEME";
+    private static final String AppTheme = "APP_THEME";
+    private static final String NameSharedPreference = "LOGIN";
     private Button button_result;
     private Button button_reset;
     private Button button_settings;
     private CalcActions calcActions01;
+    private int codeStyle = 0;
+
     //endregion
 
     //Сохраняем данные перед пересозданием активити
@@ -35,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
         instanceState.putString("enters", lastVal); //Сохраняем ввод
         instanceState.putStringArrayList("sig",calcActions01.getMathSigns()); //Сохраняем массив с введёнными мат. знаками
         instanceState.putString("info", (String) textView_info.getText()); // сохраняем результат
-        instanceState.putString("styleName", (String) styleName); // сохраняем результат
+        instanceState.putString("styleName", (String) styleName); // сохраняем стиль
     }
 
     //Возвращаем данные после пересоздания активити
@@ -59,28 +65,49 @@ public class MainActivity extends AppCompatActivity implements Constants{
         textView_info.setText(savedInstanceState.getString("info"));
         //Возвращаем стиль
         styleName = savedInstanceState.getString("styleName");
+        textView_info.setText(styleName);
+    }
+
+    // Сохранение настроек стиля
+    private void setAppTheme(int codeStyle) {
+        SharedPreferences sharedPref = getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
+        // Настройки сохраняются посредством специального класса editor.
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt(AppTheme, codeStyle);
+        editor.apply();
+    }
+
+    // Чтение настроек, параметр стиля/темы
+    private int getCodeStyle(int codeStyle){
+    // Работаем через специальный класс сохранения и чтения настроек
+        SharedPreferences sharedPref = getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
+    //Прочитать тему, если настройка не найдена - взять по умолчанию
+        return sharedPref.getInt(AppTheme, codeStyle);
+    }
+
+    private int getAppTheme(int codeStyle) {
+        return codeStyleToStyleId(getCodeStyle(codeStyle));
+    }
+
+    //Возвращаем тему
+    private int codeStyleToStyleId(int codeStyle) {
+        switch (codeStyle) {
+            case (0):
+                return R.style.Theme_Calculator;
+            case (1):
+                return R.style.Theme_CalculatorDark;
+            default:
+                return R.style.Theme_Calculator_Italian;
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(this, styleName, Toast.LENGTH_SHORT).show();
-        setTheme(codeStyleToStyleId(styleName));
+        setTheme(getAppTheme(codeStyle));
         setContentView(R.layout.activity_main);
         initialization();
         clickListener();
-    }
-
-    //Возвращаем тему
-    private int codeStyleToStyleId(String styleName) {
-        switch (styleName) {
-            case ("Light"):
-                return R.style.Theme_Calculator;
-            case ("Dark"):
-                return R.style.Theme_CalculatorDark;
-            default:
-                return R.style.Theme_Calculator_Italian;
-        }
     }
 
     //Преобразуем
@@ -188,8 +215,11 @@ public class MainActivity extends AppCompatActivity implements Constants{
         if (data == null) {
             return;
         }
-        styleName = data.getStringExtra("styleName");
-        textView_info.setText(styleName);
+        codeStyle = data.getIntExtra("styleName",0);
+        //styleName = data.getStringExtra("styleName");
+        Toast.makeText(this, styleName, Toast.LENGTH_SHORT).show();
+        setAppTheme(codeStyle);
+        recreate();
     }
 
     //Функция для вывода результата на ТекстВью
