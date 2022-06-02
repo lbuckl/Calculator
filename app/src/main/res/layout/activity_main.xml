@@ -8,9 +8,9 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_settings"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:icon = "@drawable/set3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:icon="@android:drawable/ic_menu_preferences"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -25,7 +25,7 @@
 
         <ImageView
             android:id="@+id/background"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/lightthem1" />

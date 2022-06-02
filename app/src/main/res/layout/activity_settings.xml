@@ -8,8 +8,10 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
+        style="@style/MyTextStyleTextViev"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:alpha="1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -19,6 +21,7 @@
 
             <TextView
                 android:id="@+id/textView_AppNameDescr"
+                style="@style/MyTextStyleTextViev"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clickable="false"
@@ -26,26 +29,27 @@
 
             <TextView
                 android:id="@+id/textView_AppName"
+                style="@style/MyTextStyleTextViev"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="TextView" />
+                android:layout_height="match_parent" />
         </TableRow>
 
         <TableRow
-            android:layout_width="405dp"
+            android:layout_width="400dp"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/textView_AppVersionDescr"
+                style="@style/MyTextStyleTextViev"
                 android:layout_width="108dp"
                 android:layout_height="match_parent"
                 android:text="@string/AppVersion" />
 
             <TextView
                 android:id="@+id/textView_AppVersion"
+                style="@style/MyTextStyleTextViev"
                 android:layout_width="115dp"
-                android:layout_height="match_parent"
-                android:text="TextView" />
+                android:layout_height="match_parent" />
         </TableRow>
 
         <TableRow
@@ -54,15 +58,16 @@
 
             <TextView
                 android:id="@+id/textView_StyleDescr"
+                style="@style/MyTextStyleTextViev"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/AppStyle" />
 
             <TextView
                 android:id="@+id/textView_Style"
+                style="@style/MyTextStyleTextViev"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="TextView" />
+                android:layout_height="match_parent" />
 
             <Spinner
                 android:id="@+id/spinner_Style"
@@ -79,15 +84,16 @@
 
             <TextView
                 android:id="@+id/textView_LangDescr"
+                style="@style/MyTextStyleTextViev"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="@string/AppLeng" />
 
             <TextView
                 android:id="@+id/textView_Lang"
+                style="@style/MyTextStyleTextViev"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="TextView" />
+                android:layout_height="match_parent" />
 
             <Spinner
                 android:id="@+id/spinner_Lang"
@@ -104,7 +110,7 @@
         android:id="@+id/button_applySettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Применить"
+        android:text="@string/Apply"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

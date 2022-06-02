@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
     private TextView textView_lastValue;
     private String result = "";
     private String lastVal = "";
-    private String styleName = "11111111";
+    private String styleName = "";
     private static final String appTheme = "APP_THEME";
     private static final String AppTheme = "APP_THEME";
     private static final String NameSharedPreference = "LOGIN";
@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements Constants{
         }
         codeStyle = data.getIntExtra("styleName",0);
         //styleName = data.getStringExtra("styleName");
-        Toast.makeText(this, styleName, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, styleName, Toast.LENGTH_SHORT).show();
         setAppTheme(codeStyle);
         recreate();
     }

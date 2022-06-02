@@ -28,6 +28,8 @@
     <string name="AppStyle">Стиль</string>
     <string name="AppLeng">Язык</string>
     <string name="NoName">No</string>
+    <string name="Apply">Применить</string>
+
     <string-array name="Langs">
         <item>Русский</item>
         <item>Английский</item>
