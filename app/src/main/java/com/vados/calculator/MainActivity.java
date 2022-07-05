@@ -2,14 +2,19 @@ package com.vados.calculator;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity implements Constants{
 
     //region глобальные данные
     private TextView textView_result;
@@ -17,11 +22,16 @@ public class MainActivity extends AppCompatActivity  {
     private TextView textView_lastValue;
     private String result = "";
     private String lastVal = "";
-    private final Button[] buttons = new Button[11]; // храним кнопки 0-9 и .
-    private final Button[] signs = new Button[4]; // храним массив с мат. действиями
+    private String styleName = "";
+    private static final String appTheme = "APP_THEME";
+    private static final String AppTheme = "APP_THEME";
+    private static final String NameSharedPreference = "LOGIN";
     private Button button_result;
     private Button button_reset;
-    CalcActions calcActions01;
+    private Button button_settings;
+    private CalcActions calcActions01;
+    private int codeStyle = 0;
+
     //endregion
 
     //Сохраняем данные перед пересозданием активити
@@ -31,6 +41,7 @@ public class MainActivity extends AppCompatActivity  {
         instanceState.putString("enters", lastVal); //Сохраняем ввод
         instanceState.putStringArrayList("sig",calcActions01.getMathSigns()); //Сохраняем массив с введёнными мат. знаками
         instanceState.putString("info", (String) textView_info.getText()); // сохраняем результат
+        instanceState.putString("styleName", (String) styleName); // сохраняем стиль
     }
 
     //Возвращаем данные после пересоздания активити
@@ -52,15 +63,54 @@ public class MainActivity extends AppCompatActivity  {
 
         //Возвращаем инфо
         textView_info.setText(savedInstanceState.getString("info"));
+        //Возвращаем стиль
+        styleName = savedInstanceState.getString("styleName");
+        textView_info.setText(styleName);
+    }
+
+    // Сохранение настроек стиля
+    private void setAppTheme(int codeStyle) {
+        SharedPreferences sharedPref = getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
+        // Настройки сохраняются посредством специального класса editor.
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt(AppTheme, codeStyle);
+        editor.apply();
+    }
+
+    // Чтение настроек, параметр стиля/темы
+    private int getCodeStyle(int codeStyle){
+    // Работаем через специальный класс сохранения и чтения настроек
+        SharedPreferences sharedPref = getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
+    //Прочитать тему, если настройка не найдена - взять по умолчанию
+        return sharedPref.getInt(AppTheme, codeStyle);
+    }
+
+    private int getAppTheme(int codeStyle) {
+        return codeStyleToStyleId(getCodeStyle(codeStyle));
+    }
+
+    //Возвращаем тему
+    private int codeStyleToStyleId(int codeStyle) {
+        switch (codeStyle) {
+            case (0):
+                return R.style.Theme_Calculator;
+            case (1):
+                return R.style.Theme_CalculatorDark;
+            default:
+                return R.style.Theme_Calculator_Italian;
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(getAppTheme(codeStyle));
         setContentView(R.layout.activity_main);
-            initialization();
-            clickListener();
+        initialization();
+        clickListener();
     }
+
+    //Преобразуем
 
     //Инициализация объектов
     private void initialization(){
@@ -82,6 +132,7 @@ public class MainActivity extends AppCompatActivity  {
         signs[3] = findViewById(R.id.button_dif);
         button_result = findViewById(R.id.button_result);
         button_reset = findViewById(R.id.button_reset);
+        button_settings = findViewById(R.id.button_settings);
 
         textView_info = findViewById(R.id.textView_info);
         textView_result = findViewById(R.id.textView_result);
@@ -150,6 +201,25 @@ public class MainActivity extends AppCompatActivity  {
             if (fResult < 0) calcActions01.setMathSigns("-");
             printEnters();
         });
+
+        //Кнопка настроек
+        button_settings.setOnClickListener(v -> {
+            Intent button_settings = new Intent(MainActivity.this,Settings.class);
+            startActivityForResult(button_settings,1);
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data == null) {
+            return;
+        }
+        codeStyle = data.getIntExtra("styleName",0);
+        //styleName = data.getStringExtra("styleName");
+        //Toast.makeText(this, styleName, Toast.LENGTH_SHORT).show();
+        setAppTheme(codeStyle);
+        recreate();
     }
 
     //Функция для вывода результата на ТекстВью

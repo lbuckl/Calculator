@@ -22,4 +22,27 @@
     <string name="result">Результат</string>
     <string name="res">res</string>
 
+    <!--Стринги для панели настроек-->
+    <string name="AppName">Приложение</string>
+    <string name="AppVersion">Версия</string>
+    <string name="AppStyle">Стиль</string>
+    <string name="AppLeng">Язык</string>
+    <string name="NoName">No</string>
+    <string name="Apply">Применить</string>
+
+    <string-array name="Langs">
+        <item>Русский</item>
+        <item>Английский</item>
+    </string-array>
+
+    <string-array name="Styles">
+        <item>Светлый</item>
+        <item>Тёмный</item>
+    </string-array>
+
+    <!--Перечисление тем-->
+    <string name="Light">Light</string>
+    <string name="Dark">Dark</string>
+
+
 </resources>
